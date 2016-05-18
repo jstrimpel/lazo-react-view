@@ -8,6 +8,13 @@ define(['lazoView'], function (LazoView) {
             if (!this.React) {
                 throw new Error('lazo-react-view: React must be defined, <lazo-react-view>.React');
             }
+            if (!this.ReactDOM) {
+                throw new Error('lazo-react-view: ReactDOM must be defined, <lazo-react-view>.ReactDOM');
+            }
+            if (!this.ReactDOMServer) {
+                throw new Error('lazo-react-view: ReactDOMServer must be defined, <lazo-react-view>.ReactDOMServer');
+            }
+
             if (!this.Container) {
                 throw new Error('lazo-react-view: A React Container component must be defined, <lazo-react-view>.Container');
             }
@@ -53,7 +60,7 @@ define(['lazoView'], function (LazoView) {
                 throw err;
             };
             try {
-                options.success(this.React.render(this.container, this.el));
+                options.success(this.ReactDOM.render(this.container, this.el));
             } catch (e) {
                 options.error(e);
             }
@@ -61,7 +68,7 @@ define(['lazoView'], function (LazoView) {
 
         getInnerHtml: function (options) {
             try {
-                options.success(this.React.renderToString(this.container));
+                options.success(this.ReactDOMServer.renderToString(this.container));
             } catch (e) {
                 options.error(e);
             }
